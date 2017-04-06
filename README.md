@@ -17,7 +17,7 @@ Ourls会对输入的url进行标准化处理，若为缺少scheme的url，会默
 
 ## 演示/Demo
 
-[在线演示/Online Demo](http://skyx.in)
+[在线演示/Online Demo](http://goonil.com)
 
 ## 安装/Install
 
