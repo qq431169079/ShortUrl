@@ -70,7 +70,8 @@ Flight::route('/@hash', function ($hash) {
             Flight::get('db')->update('urls', ['count[+]' => 1], [
                 'id' => $id,
             ]);
-            Flight::redirect($store[0]['url'], 302);
+            //Flight::redirect($store[0]['url'], 302);
+            Flight::render('go.php',["hash"=>$hash,"url"=>$store[0]['url']]);
         }
     }
 });

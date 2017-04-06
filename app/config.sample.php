@@ -33,7 +33,10 @@ return [
         ],
     ],
     'settings' => [
-        'external_js' => null,
+        'jsec'  =>4,
+        'external_js'   => null,
+        'ads_top'       => null,
+        'ads_bottom'    => null,
     ],
     'proxies' => [
         '127.0.0.0/8',

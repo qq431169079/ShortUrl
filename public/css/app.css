@@ -1,7 +1,6 @@
-.header {
+.header,.container,.footer,.jads{
     text-align: center;
 }
-
 .header h1 {
     font-size: 200%;
     color: #333;

@@ -7,7 +7,7 @@
     <meta name="keywords" content="">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Goonil.com_一个免费的短网址服务网站</title>
+    <title><?= $hash;?>_Goonil.com_一个免费的短网址服务网站</title>
 
     <!-- Set render engine for 360 browser -->
     <meta name="renderer" content="webkit">
@@ -29,42 +29,47 @@
     <link rel="stylesheet" href="<?= Flight::get('flight.base_url');?>public/css/app.css">
 </head>
 <body>
-<a href="https://github.com/qsbaq/Goonil">
-    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-</a>
 
 <div class="header">
-    <h1>Goonil.com</h1>
-    <p>Url Shorten Service.<br>一个免费的短网址服务网站。</p>
-    <hr>
+        <h1>Goonil.com</h1>
+        <p>Url Shorten Service.<br>一个免费的短网址服务网站。</p>
+    <hr/>
 </div>
-
-<div class="am-g">
-    <div class="contenter am-u-lg-6 am-u-md-8 am-u-sm-centered">
-        <?php if (!empty(Flight::get('flight.settings')['ads_top'])): ?>
-            <div class="jads"><?= Flight::get('flight.settings')['ads_top'] ?></div>
-        <?php endif ?>
-        <form class="am-form">
-            <input type="url" name="" id="url" value="" placeholder="Please input the url here. 请在此填写你要转换的长网址或短址">
-            <br>
-            <div class="am-cf">
-                <input type="button" id="shorten" value="Turn url. 转换短址" class="am-btn am-btn-primary am-btn-sm am-fl">
-                <input type="button" id="expand" value="Return url. 还原短址" class="am-btn am-btn-default am-btn-sm am-fr">
-            </div>
-        </form>
-        <?php if (!empty(Flight::get('flight.settings')['ads_bottom'])): ?>
-            <div class="jads"><?= Flight::get('flight.settings')['ads_bottom'] ?></div>
-        <?php endif ?>
-        <div id="qrcode" class="am-hide am-center am-img-thumbnail am-img-responsive" style="width: 206px;height: 206px"></div>
-        <hr>
-
-    </div>
-</div>
+<div class="container">
+    <?php if (!empty(Flight::get('flight.settings')['ads_top'])): ?>
+        <div class="jads"><?= Flight::get('flight.settings')['ads_top'] ?></div>
+    <?php endif ?>   
     
-<div class="footer">        
-    <p>© <?= date('Y') ?> <a href="<?= Flight::get('flight.base_url');?>" target="_blank">Goonil.com</a> . Licensed under MIT license.</p>
+    <h2 id="show"></h2> 
+    <h3><?= $url;?></h3>
+    
+    <p>If there is no automatic Jump, please <a href="javascript:showUrl()" title="<?= $url;?>">click here.</a> </p>
+    <p>如未能自动跳转，请<a href="javascript:showUrl()" title="<?= $url;?>">点击这里!</a></p>
+    
+    <?php if (!empty(Flight::get('flight.settings')['ads_bottom'])): ?>
+        <div class="jads"><?= Flight::get('flight.settings')['ads_bottom'] ?></div>
+    <?php endif ?>    
     <div id="content" class="am-u-lg-6 am-u-md-8 am-u-sm-centered"></div>
+    <hr/>
 </div>
+<div class="footer">
+    <p>© <?= date('Y') ?> <a href="<?= Flight::get('flight.base_url');?>" target="_blank">Goonil.com</a> . Licensed under MIT license.</p>
+</div>    
+<script type="text/javascript"> 
+var _u = "<?= $url ?>";
+var t= <?= Flight::get('flight.settings')['jsec'];?>;
+setInterval("refer()",1000);
+function refer(){  
+    if(t==0){ 
+        window.location=_u;
+    } 
+    document.getElementById('show').innerHTML=""+t+" (s) will will automatically jump.";
+    t--; 
+} 
+function showUrl() {  
+	window.location.href=_u;
+}  
+</script> 
 
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>

@@ -1,4 +1,4 @@
-.idea
 /app/config.php
 vendor
 /config.yaml
+/nbproject/
