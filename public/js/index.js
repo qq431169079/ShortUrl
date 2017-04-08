@@ -1,4 +1,11 @@
-$('#shorten').click(function() {
+document.onkeydown = function (e) { 
+    var theEvent = window.event || e; 
+    var code = theEvent.keyCode || theEvent.which; 
+    if (code == 13) { 
+        goshorten();
+    } 
+}
+var goshorten = function () {
     var raw_url = $('#url').val();
     if (validator.isURL(raw_url)) {
         var url = encodeURIComponent(raw_url);
@@ -20,9 +27,12 @@ $('#shorten').click(function() {
             }
         )
     } else {
-        alert('请输入正确的url');
+        alert('Please enter the correct URL.请输入正确的url.');
     }
-});
+};
+
+$('#shorten').click(function(){ goshorten();})
+
 
 $('#expand').click(function() {
     var s_url = $('#url').val();

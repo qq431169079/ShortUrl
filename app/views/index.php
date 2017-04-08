@@ -7,7 +7,7 @@
     <meta name="keywords" content="">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Goonil.com_一个免费的短网址服务网站</title>
+    <title><?php if(!empty($hash)){ echo $hash."_";}?>GooNil.com_一个免费的短网址服务网站</title>
 
     <!-- Set render engine for 360 browser -->
     <meta name="renderer" content="webkit">
@@ -27,6 +27,8 @@
 
     <link href="//cdn.bootcss.com/amazeui/2.5.2/css/amazeui.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= Flight::get('flight.base_url');?>public/css/app.css">
+    <link rel="shortcut icon" href="<?= Flight::get('flight.base_url');?>goonil/favicon.ico" />
+
 </head>
 <body>
 <a href="https://github.com/qsbaq/Goonil">
@@ -34,33 +36,19 @@
 </a>
 
 <div class="header">
-    <h1>Goonil.com</h1>
+    <h1><a href="<?= Flight::get('flight.base_url');?>">GooNil.com</a></h1>
     <p>Url Shorten Service.<br>一个免费的短网址服务网站。</p>
     <hr>
 </div>
-
-<div class="am-g">
-    <div class="contenter am-u-lg-6 am-u-md-8 am-u-sm-centered">
-        <?php if (!empty(Flight::get('flight.settings')['ads_top'])): ?>
-            <div class="jads"><?= Flight::get('flight.settings')['ads_top'] ?></div>
-        <?php endif ?>
-        <form class="am-form">
-            <input type="url" name="" id="url" value="" placeholder="Please input the url here. 请在此填写你要转换的长网址或短址">
-            <br>
-            <div class="am-cf">
-                <input type="button" id="shorten" value="Turn url. 转换短址" class="am-btn am-btn-primary am-btn-sm am-fl">
-                <input type="button" id="expand" value="Return url. 还原短址" class="am-btn am-btn-default am-btn-sm am-fr">
-            </div>
-        </form>
-        <?php if (!empty(Flight::get('flight.settings')['ads_bottom'])): ?>
-            <div class="jads"><?= Flight::get('flight.settings')['ads_bottom'] ?></div>
-        <?php endif ?>
-        <div id="qrcode" class="am-hide am-center am-img-thumbnail am-img-responsive" style="width: 206px;height: 206px"></div>
-        <hr>
-
-    </div>
-</div>
+<?php if (!empty(Flight::get('flight.settings')['ads_top'])): ?>
+    <div class="jads"><?= Flight::get('flight.settings')['ads_top'] ?></div>
+<?php endif ?>
     
+<?php echo $body_content; ?>
+    
+<?php if (!empty(Flight::get('flight.settings')['ads_bottom'])): ?>
+    <div class="jads"><?= Flight::get('flight.settings')['ads_bottom'] ?></div>
+<?php endif ?>    
 <div class="footer">        
     <p>© <?= date('Y') ?> <a href="<?= Flight::get('flight.base_url');?>" target="_blank">Goonil.com</a> . Licensed under MIT license.</p>
     <div id="content" class="am-u-lg-6 am-u-md-8 am-u-sm-centered"></div>
@@ -79,7 +67,17 @@
 <script src="//cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script src="<?= Flight::get('flight.base_url');?>public/js/index.js"></script>
 <?php if (!empty(Flight::get('flight.settings')['external_js'])): ?>
-    <script src="<?= Flight::get('flight.settings')['external_js'] ?>"></script>
+    <script src="<?= Flight::get('flight.base_url');?><?= Flight::get('flight.settings')['external_js'] ?>"></script>
 <?php endif ?>
+    
+<script type='text/javascript'>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?469f8d6fd30c5d9008ee1202bf4074e3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </body>
 </html>
